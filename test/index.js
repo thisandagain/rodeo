@@ -24,6 +24,9 @@ async.auto({
         target.on('message', function (data) {
             id  = data.id;
             uid = data.target;
+
+            console.dir(data);
+            
             callback(null, data);
         });
     },
@@ -42,6 +45,16 @@ async.auto({
         }, 100);
     }],
 
+    submi2: ['listen', function (callback) {
+        setTimeout(function () {
+            target.submit({
+                target: 'test::2',
+                persist: true,
+                message: 'This is another test.'
+            }, callback);
+        }, 100);
+    }],
+
     read:   ['event', function (callback) {
         target.read(uid, id, callback);
     }],
@@ -50,7 +63,7 @@ async.auto({
         target.dismiss(uid, id, callback);
     }],
 
-    test:   ['listen', 'event', 'submit', 'read', 'remove', function (callback, obj) {
+    test:   ['listen', 'event', 'submit', 'submi2', 'read', 'remove', function (callback, obj) {
         test("Component definition", function (t) {
             t.type(target, "object", "Component should be an object");
             t.type(target.listen, "function", "Method should be a function");
@@ -66,12 +79,16 @@ async.auto({
 
         test("Event", function (t) {
             t.type(obj.event, "object", "Response is an object.");
-            t.equal(obj.event.message, "This is only a test.", "Expected result");
             t.end();
         });
 
         test("Submit", function (t) {
             t.type(obj.submit, "object", "Response is an object.");
+            t.end();
+        });
+
+        test("Submit", function (t) {
+            t.type(obj.submi2, "object", "Response is an object.");
             t.end();
         });
 
