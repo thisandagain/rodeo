@@ -1,6 +1,8 @@
 ## Rodeo
 #### A realtime notification system based on Redis and Node.js
 
+[![Build Status](https://secure.travis-ci.org/thisandagain/rodeo.png)](http://travis-ci.org/thisandagain/rodeo)
+
 ### Installation
 ```bash
 npm install rodeo
