@@ -58,6 +58,18 @@ Notices follow a very simple convention allowing for arbitrary extension through
 }
 ```
 
+### CLI
+Rodeo includes a command line interface which makes testing a bit simpler:
+```bash
+[sudo] npm install -g rodeo
+```
+
+```bash
+cat message.json | rodeo --target 'test::1234' --persist
+```
+
+To use the CLI with non-default redis connection settings. Simply set the `RODEO_CLI_HOST`, `RODEO_CLI_PORT`, and (optionally) `RODEO_CLI_PASS` environment variables.
+
 ### Testing
 ```bash
 npm test
