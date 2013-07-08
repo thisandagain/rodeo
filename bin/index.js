@@ -59,7 +59,7 @@ process.stdin.on('end', function () {
     // Target safety outside of localhost
     if (process.env.RODEO_CLI_HOST !== '127.0.0.1' && argv.target === null) {
         console.log('A target of "null" is not permitted when using the CLI on host ' + process.env.RODEO_CLI_HOST);
-        setTimeout(process.exit, 100);
+        return setTimeout(process.exit, 100);
     }
 
     // Bind to redis pub/sub and submit notification
